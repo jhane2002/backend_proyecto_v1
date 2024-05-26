@@ -15,19 +15,23 @@ const rolesRoutes = require('./routes/rolesRoutes');
 //const productRoutes = require('./routes/product');
 //const categoryRoutes = require('./routes/category');
 // const bannerRoutes = require('./routes/banner');
-
+const defaultmongoDb = 'mongodb+srv://jhanealmendras7:UDJLjZLZQc0Z1Url@cluster0.yr55dj5.mongodb.net/test';
+const mongodbUrl = process.env.DATABASE || defaultmongoDb;
 // CONECTAR A LA BASE DE DATOS
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
 })
-.then(() => console.log('DB conectado'))
-.catch((err) => console.log('Error conectando a la base de datos:', err));
+    .then(function () {
+        log.info('DB conectado');
+    }).catch(function (err) {
+        console.log('Error conectando a la base de datos:', err);
+    });
 
 // MIDDLEWARES
 app.use(morgan('dev'));
-app.use(bodyParser.json({limit: '10000mb'}));
+app.use(bodyParser.json({ limit: '10000mb' }));
 app.use(bodyParser.urlencoded({
     limit: '10000mb',
     extended: true
