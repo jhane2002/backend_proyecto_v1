@@ -25,7 +25,7 @@ mongoose.connect(mongodbUrl, {
     useCreateIndex: true,
 })
     .then(function () {
-        log.info('DB conectado');
+        console.log('DB conectado');
     }).catch(function (err) {
         console.log('Error conectando a la base de datos:', err);
     });
