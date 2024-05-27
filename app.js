@@ -15,7 +15,8 @@ const rolesRoutes = require('./routes/rolesRoutes');
 //const productRoutes = require('./routes/product');
 //const categoryRoutes = require('./routes/category');
 // const bannerRoutes = require('./routes/banner');
-const defaultmongoDb = 'mongodb+srv://jhanealmendras7:UDJLjZLZQc0Z1Url@cluster0.yr55dj5.mongodb.net/test';
+const defaultmongoDb = 'mongodb+srv://jhanealmendras7:UDJLjZLZQc0Z1Url@cluster0.yr55dj5.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0';
+
 const mongodbUrl = process.env.DATABASE || defaultmongoDb;
 // CONECTAR A LA BASE DE DATOS
 mongoose.connect(mongodbUrl, {
