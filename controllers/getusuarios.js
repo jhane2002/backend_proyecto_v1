@@ -1,24 +1,14 @@
-const User = require('../models/user');
-const gravatar = require('gravatar');
-const passport = require('passport');
-const { getLogger } = require('@jwt/utils')
-const log = getLogger(__dirname, __filename)
+const User = require("../models/user");
+const ErrorResponse = require('../utils/errorResponse');
+const crypto = require('crypto');
 
-async function getPerfil(req, res, next) {
+
+// Obtener todos los usuarios
+exports.getAll = async (req, res, next) => {
     try {
-        // Busca al usuario en la base de datos
-        const user = await User.find();
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
-        return res.status(200).json(user);
-    } catch (err) {
-        log.error('Ups Hubo un error! ' + err);
-        return res.status(500).json({ message: 'Error interno del servidor' });
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        next(error);
     }
-}
-
-module.exports = {
-    getPerfil
 };
