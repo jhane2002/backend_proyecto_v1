@@ -12,10 +12,11 @@ const errorHandler = require('./middleware/error');
 // IMPORTAR RUTAS
 const authRoutes = require('./routes/auth');
 const rolesRoutes = require('./routes/rolesRoutes');
+const users = require('./routes/user');
 //const productRoutes = require('./routes/product');
 //const categoryRoutes = require('./routes/category');
 // const bannerRoutes = require('./routes/banner');
-const defaultmongoDb = 'mongodb+srv://jhanealmendras7:UDJLjZLZQc0Z1Url@cluster0.yr55dj5.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0';
+const defaultmongoDb = 'mongodb+srv://jhanealmendras7:UDJLjZLZQc0Z1Url@cluster0.yr55dj5.mongodb.net/test';
 
 const mongodbUrl = process.env.DATABASE || defaultmongoDb;
 // CONECTAR A LA BASE DE DATOS
@@ -39,6 +40,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors());
+
+app.use('/api/users', users);
 
 // MIDDLEWARE DE RUTAS
 app.use("/api", authRoutes);
